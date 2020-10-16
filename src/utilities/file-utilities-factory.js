@@ -154,14 +154,16 @@ module.exports = function () {
    saveAs(b64toBlob(b64data, "image/jpg"), filename || "network.jpg");
  };
 
- fileUtilities.saveAsSvg = function(filename, scale, bg) {
-   if(maxWidth || maxHeight) {
-     var svgContent = cy.svg({maxWidth: maxWidth, maxHeight: maxHeight, full: true, bg: bg});
+ fileUtilities.saveAsSvg = function(filename, scale, bg, maxWidth, maxHeight) {
+   if (maxWidth || maxHeight) {
+     var svgContent = cy.svg({
+       full: true, bg: bg, 
+       maxWidth: maxWidth, maxHeight: maxHeight
+     });
    }
    else {
      var svgContent = cy.svg({scale: scale || 1, full: true, bg: bg});
    }
-
    saveAs(new Blob([svgContent], {type:"image/svg+xml;charset=utf-8"}), filename || "network.svg");
  };
 
